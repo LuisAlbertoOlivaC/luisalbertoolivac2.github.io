@@ -7,18 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #d0e4f7;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
         }
         .login-container {
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 350px;
             text-align: center;
         }
         input {
@@ -29,7 +30,7 @@
             border-radius: 5px;
         }
         button {
-            background-color: #4CAF50;
+            background-color: #3e5c76;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -38,7 +39,7 @@
             width: 100%;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #507799;
         }
         .error {
             color: red;
@@ -47,14 +48,51 @@
     </style>
 </head>
 <body>
+
+    <canvas id="canvas" width="350" height="250" style="border: 0px solid #000000;"> 
+        Tu navegador no soporta canvas
+    </canvas>
+
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <input type="text" id="username" placeholder="Nombre de usuario" />
-        <input type="password" id="password" placeholder="Contraseña" />
+        <input type="text" size=40 style="width: 300px;" id="username" placeholder="Nombre de usuario" width="10"/>
+        <input type="password" size=40 style="width: 300px;" id="password" placeholder="Contraseña" />
         <button onclick="login()">Ingresar</button>
         <p id="error-message" class="error"></p>
     </div>
 
-    <script src="login.js"></script>
+    <script>
+        // Cargar imagen en el canvas
+        window.onload = function() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            const img = new Image();
+            img.src = "rediveca2.png"; // URL de la imagen
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+        };
+
+        function login() {
+            // Credenciales de ejemplo
+            const validUsername = "usuario";
+            const validPassword = "12345";
+
+            // Obtener valores ingresados por el usuario
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Validar credenciales
+            if (username === validUsername && password === validPassword) {
+                alert("Inicio de sesión exitoso!");
+                // Redirección a otra página
+                window.location.href = "C:/Users/Usuario1/Documents/GitHub/LuisAlbertoOlivaC.github.io/INTERFAZ-MEDIA.html";
+            } else {
+                document.getElementById("error-message").textContent = "Nombre de usuario o contraseña incorrectos.";
+            }
+        }
+    </script>
 </body>
 </html>
