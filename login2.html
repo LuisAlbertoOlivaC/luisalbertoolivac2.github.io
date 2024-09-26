@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d0e4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas" width="350" height="250" style="border: 0px solid #000000;"> 
+        Tu navegador no soporta canvas
+    </canvas>
+
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" size=40 style="width: 300px;" id="username" placeholder="Nombre de usuario" width="10"/>
+        <input type="password" size=40 style="width: 300px;" id="password" placeholder="Contraseña" />
+        <button onclick="login()">Ingresar</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        // Cargar imagen en el canvas
+        window.onload = function() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            const img = new Image();
+            img.src = "LOGO-RDVC-fotor-bg-remover-20240925211419.png"; // URL de la imagen
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+        };
+
+        function login() {
+            // Credenciales de ejemplo
+            const validUsername = "usuario";
+            const validPassword = "12345";
+
+            // Obtener valores ingresados por el usuario
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Validar credenciales
+            if (username === validUsername && password === validPassword) {
+                alert("Inicio de sesión exitoso!");
+                // Redirección a otra página
+                window.location.href = "Inicio.html";
+            } else {
+                document.getElementById("error-message").textContent = "Nombre de usuario o contraseña incorrectos.";
+            }
+        }
+    </script>
+</body>
+</html>
