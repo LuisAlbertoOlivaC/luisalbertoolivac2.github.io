@@ -1,27 +1,37 @@
 <!DOCTYPE html>
+<!-- Define el documento como HTML5. -->
 <html lang="es">
+    <!-- Inicia el elemento HTML con el atributo "lang" especificando que el idioma es español. -->
 <head>
+    <!-- Sección de encabezado del documento. Aquí se incluye metadata, links y estilos. -->
     <meta charset="UTF-8">
+    <!-- Establece la codificación de caracteres como UTF-8, para soportar la mayoría de los caracteres. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura la ventana gráfica para que el sitio sea responsive, adaptándose al ancho de la pantalla del dispositivo. -->
     <title>REDIVECA - Tours Virtuales</title>
+      <!-- Título que aparecerá en la pestaña del navegador. -->
     
     <!-- Google Fonts: Dancing Script -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
+    <!-- Vincula la fuente "Dancing Script" desde Google Fonts con un peso de 700 para los títulos. -->
     
     <style>
+         /* Aquí se definen los estilos CSS directamente en el documento HTML. */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+         /* Elimina márgenes y relleno por defecto de todos los elementos. 
+           Utiliza box-sizing para incluir los márgenes y bordes dentro del ancho total. */
         body, html {
             height: 100%;
             font-family: 'Arial', sans-serif;
             background-color: #d0e4f7; /* Fondo azul claro */
             color: #333; /* Texto oscuro general */
         }
-
+/* Aplica a los elementos "body" y "html" un 100% de altura para abarcar toda la pantalla.
+           Usa la fuente Arial por defecto y un fondo azul claro. El color de texto es oscuro. */
         /* Estilos para la cabecera */
         .navbar {
             position: fixed;
@@ -33,18 +43,21 @@
             align-items: center;
             z-index: 1000;
         }
-
+/* La barra de navegación está fija en la parte superior de la página con márgenes a los lados.
+           Se usa "flex" para distribuir su contenido (logo y menú) de forma equitativa. 
+           "z-index" garantiza que se mantenga por encima de otros elementos. */
         .logo img {
             width: 120px; /* Tamaño ajustado del logo */
             height: auto;
             transition: opacity 0.3s ease-in-out;
         }
-
+/* El logo tiene un ancho fijo de 120px y la altura ajustada proporcionalmente.
+           La transición suaviza el cambio de opacidad cuando se oculta. */
         /* Ocultar logo cuando el sidebar esté abierto */
         .logo.hide {
             opacity: 0;
         }
-
+/* Clase que oculta el logo reduciendo su opacidad a 0 cuando el menú lateral está abierto. */
         .menu-icon {
             cursor: pointer;
             font-size: 30px;
@@ -54,7 +67,8 @@
             border-radius: 5px;
             margin-right: 10px; /* Espacio entre el botón de menú y el de cuenta */
         }
-
+ /* Icono del menú. Es interactivo (cursor cambia al pasar sobre él), de tamaño 30px, con un fondo azul oscuro y bordes redondeados.
+           Tiene un margen derecho para separar el ícono del botón de cuenta. */
         /* Estilo compartido para los botones */
         .cta-button {
             background-color: #ff6347; /* Rojo tomate */
@@ -66,11 +80,12 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-
+/* Botón de llamada a la acción (CTA). Fondo rojo tomate, sin bordes, con un tamaño de letra de 20px, bordes redondeados.
+           Cambia el color de fondo en 0.3s cuando se interactúa. */
         .cta-button:hover {
             background-color: #ff4500; /* Rojo anaranjado */
         }
-
+/* Cambia el color del botón CTA a un tono más oscuro cuando el usuario pasa el cursor sobre él. */
         /* Estilos del sidebar */
         .sidebar {
             height: 100%;
@@ -87,7 +102,9 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
+/* Define el menú lateral como fijo en el lado izquierdo de la pantalla. 
+           Inicia con un ancho de 0 y se expande al abrirse. Fondo azul oscuro. 
+           "overflow-x: hidden" evita que aparezca un scroll horizontal. */
         .sidebar button {
             padding: 15px 20px;
             margin: 10px auto;
@@ -103,15 +120,16 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+/* Estilo de los botones dentro del menú lateral. Son grandes y centrados, con texto blanco y fondo del mismo color que el menú. 
+           La transición suaviza el cambio de color al interactuar. */
         .sidebar button.casas-destacadas {
             background-color: #ff6347; /* Rojo tomate */
         }
-
+/* Botón destacado con un color de fondo rojo tomate para diferenciarlo de los demás botones del menú. */
         .sidebar button:hover {
             background-color: #6a7d94; /* Azul más claro al hacer hover */
         }
-
+/* Cambia el fondo del botón a un tono azul más claro cuando el usuario pasa el cursor sobre él. */
         .sidebar .closebtn {
             position: absolute;
             top: 10px;
@@ -120,17 +138,18 @@
             color: white;
             cursor: pointer;
         }
-
+/* Botón para cerrar el menú lateral. Está en la esquina superior derecha y es grande, con texto blanco. */
         .sidebar .sidebar-logo {
             padding: 20px;
             text-align: center;
         }
+/* Contenedor del logo dentro del menú lateral. Lo centra horizontalmente con padding. */
 
         .sidebar .sidebar-logo img {
             width: 100px;
             height: auto;
         }
-
+/* El logo dentro del menú lateral tiene un tamaño más pequeño, 100px de ancho. */
         .sidebar .privacy-btn {
             padding: 15px 20px;
             margin: 10px auto;
@@ -144,11 +163,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+/* Botón para el aviso de privacidad. Es más pequeño en comparación con otros botones del menú. */
         .sidebar .privacy-btn:hover {
             background-color: #6a7d94; /* Azul más claro al hacer hover */
         }
-
+/* Cambia el color de fondo del botón de privacidad al pasar el cursor sobre él. */
         /* Estilos para la sección hero */
         .hero {
             background-image: url('CASA%20FONDO.jpg');
@@ -163,7 +182,8 @@
             text-align: center;
             flex-direction: column;
         }
-
+/* Sección principal (hero) con una imagen de fondo que cubre toda la pantalla y se ajusta en el centro.
+           Los elementos en el hero están centrados vertical y horizontalmente. El texto es blanco y está centrado. */
         .overlay {
             position: absolute;
             top: 0;
@@ -172,18 +192,18 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6); /* Opacidad */
         }
-
+ /* Superposición semitransparente negra sobre la imagen de fondo para hacer el texto más legible. */
         .content {
             position: relative;
             z-index: 1;
         }
-
+ /* El contenido principal se coloca por encima de la superposición con un z-index más alto. */
         h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             font-family: 'Dancing Script', cursive; /* Fuente cursiva */
         }
-
+ /* Título principal en la sección hero con una fuente cursiva grande (4rem). */
         .page-title {
             font-size: 5rem; /* Tamaño del título aumentado */
             color: white; /* Color blanco */
@@ -191,10 +211,10 @@
             font-family: 'Dancing Script', cursive; /* Mismo tipo de fuente */
             margin-top: -60px; /* Mueve el título hacia arriba */
         }
-
+ /* Título destacado en el centro de la página con la fuente Dancing Script y un tamaño grande de 5rem. */
         p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem;/* Define el tamaño de la fuente del párrafo (p) en 1.5rem, un valor relativo al tamaño base de la fuente. */
+            margin-bottom: 30px;/* Aplica un margen inferior de 30px para separar los párrafos del contenido siguiente. */
         }
 
         /* Estilos adicionales para el layout */
@@ -212,20 +232,22 @@
     </style>
 </head>
 <body>
-
+<!-- Contenido principal de la página. -->
     <div class="navbar">
         <div class="logo" id="logo">
             <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
         </div>
         <div>
+            <!-- Contenedor para el icono del menú y el botón de cuenta. -->
             <span class="menu-icon" onclick="openNav()">&#9776;</span>
             <button class="cta-button" onclick="login()">Cuenta</button>
         </div>
     </div>
 
-    <div class="hero">
+    <div class="hero"><!-- Sección hero que presenta el mensaje de bienvenida. -->
         <div class="overlay"></div>
         <div class="content">
+            <!-- Contenedor para el texto en la sección hero. -->
             <div class="page-title">REDIVECA</div>
             <h1>Descubre tu nuevo hogar</h1>
             <p>Con REDIVECA, recorre virtualmente las casas de tus sueños y encuentra el lugar ideal para ti y tu familia.</p>
@@ -233,14 +255,14 @@
         </div>
     </div>
 
-    <div id="mySidebar" class="sidebar">
+    <div id="mySidebar" class="sidebar"><!-- Sidebar que contiene la navegación adicional. -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <button>Inicio</button>
         <button>Casas Nuevas</button>
         <button>Casas Usadas</button>
         <button class="casas-destacadas">Casas Destacadas</button>
         <button>Contacto</button>
-        
+        <!--- ENLACES a todos los botones. --->
         <div class="sidebar-logo">
             <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
         </div>
@@ -249,12 +271,12 @@
     </div>
 
     <script>
-        function openNav() {
+        function openNav() { /* Función que abre el sidebar. */
             document.getElementById("mySidebar").style.width = "250px";
             document.getElementById("logo").classList.add("hide");
         }
 
-        function closeNav() {
+        function closeNav() {/* Función que cierra el sidebar. */
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("logo").classList.remove("hide");
         }
