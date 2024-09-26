@@ -3,316 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REDIVECA</title>
+    <title>REDIVECA - Tours Virtuales</title>
+    
+    <!-- Google Fonts: Dancing Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
+    
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #d0e4f7; /* Fondo azul claro */
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: #3e5c76; /* Header azul */
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            text-align: center;
-            position: relative; /* Para posicionar los elementos en la esquina superior derecha */
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #d0e4f7; /* Fondo azul claro */
+            color: #333; /* Texto oscuro general */
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #ffffff; /* Color blanco para el título */
-        }
-
-        .top-right {
-            position: absolute;
-            top: 50%;
-            right: 30px; /* Mover el conjunto de búsqueda más a la derecha */
-            transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-left {
-            position: absolute;
-            top: 50%;
+        /* Estilos para la cabecera */
+        .navbar {
+            position: fixed;
+            top: 20px;
             left: 20px;
-            transform: translateY(-50%);
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
         }
 
-        .search-container {
-            display: flex; /* Hacer que el campo de búsqueda y la imagen se alineen horizontalmente */
-            align-items: center; /* Alinear verticalmente al centro */
+        .logo img {
+            width: 120px; /* Tamaño ajustado del logo */
+            height: auto;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        .top-right input[type="text"] {
-            padding: 12px;
-            border-radius: 4px;
+        /* Ocultar logo cuando el sidebar esté abierto */
+        .logo.hide {
+            opacity: 0;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            font-size: 30px;
+            color: #fff; /* Blanco */
+            background-color: #3e5c76; /* Azul oscuro */
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 10px; /* Espacio entre el botón de menú y el de cuenta */
+        }
+
+        .account-button {
+            background-color: #ff6347; /* Rojo tomate */
             border: none;
-            margin-right: 10px; /* Ajustar margen para que la imagen quede más cerca */
-            font-size: 1em;
-        }
-
-        .search-container img {
-            width: 14px; /* Hacer la imagen más pequeña */
-            height: 25px; 
-            object-fit: cover; /* Ajustar imagen */
-            margin-left: 6px; /* Pequeño espacio entre el campo de búsqueda y la imagen */
-        }
-
-        .top-right a img {
-            margin-left: -5px; /* Mover la imagen más a la izquierda */
-        }
-
-        .top-right a {
             color: white;
-            text-decoration: none;
-            font-size: 1.5em;
+            padding: 10px 20px;
+            font-size: 20px; /* Tamaño del texto */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
-        .icon {
-            margin-left: 10px;
-            font-size: 1.5em;
+        .account-button:hover {
+            background-color: #ff4500; /* Rojo anaranjado al hacer hover */
+        }
+
+        /* Estilos del sidebar */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #3e5c76; /* Azul oscuro */
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar button {
+            padding: 15px 20px;
+            margin: 10px auto;
+            font-size: 20px; /* Tamaño de la letra aumentado */
+            color: #ffffff; /* Blanco */
+            background-color: #3e5c76; /* Mismo color que el fondo del menú */
+            border: none;
+            border-radius: 8px;
+            display: block;
+            text-align: center;
+            letter-spacing: 2px; /* Separación de letras */
+            width: 80%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar button.casas-destacadas {
+            background-color: #ff6347; /* Rojo tomate */
+        }
+
+        .sidebar button:hover {
+            background-color: #6a7d94; /* Azul más claro al hacer hover */
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
             color: white;
             cursor: pointer;
         }
 
-        nav {
-            margin: 20px 0;
+        .sidebar .sidebar-logo {
+            padding: 20px;
+            text-align: center;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .sidebar .sidebar-logo img {
+            width: 100px;
+            height: auto;
         }
 
-        nav ul li {
-            display: inline-block;
-            margin: 0 15px;
+        .sidebar .privacy-btn {
+            padding: 15px 20px;
+            margin: 10px auto;
+            font-size: 14px; /* Texto más pequeño */
+            color: #ffffff; /* Blanco */
+            background-color: #3e5c76; /* Mismo color que el fondo */
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .privacy-btn:hover {
+            background-color: #6a7d94; /* Azul más claro al hacer hover */
+        }
+
+        /* Estilos para la sección hero */
+        .hero {
+            background-image: url('C:/Users/evano/OneDrive/Escritorio/CASA FONDO.jpg');
+            background-size: cover;
+            background-position: center;
             position: relative;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 1.1em;
-            background-color: #495a6f;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-
-        nav ul li a:hover {
-            background-color: #6a7d94;
-        }
-
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #3e5c76;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul li:hover ul {
-            display: block;
-        }
-
-        nav ul li ul li {
-            display: block;
-            margin: 5px 0;
-        }
-
-        nav ul li ul li a {
-            font-size: 0.9em;
-        }
-
-        .boton-destacado {
-            background-color: #ff6347;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-        }
-
-        .boton-destacado:hover {
-            background-color: #ff4500;
-        }
-
-        #destacado {
-            background-color: #ffffff;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 1200px;
-            flex-direction: column;
-            justify-content: center;
+            height: 100vh;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            flex-direction: column;
         }
 
-        #destacado h2 {
-            margin-bottom: 30px;
-            font-size: 2em;
-            color: #3e5c76;
-        }
-
-        .boton-explorar {
-            background-color: #ff6347; 
-            color: white; 
-            padding: 10px 20px; 
-            border: none; 
-            border-radius: 5px;
-            font-size: 1em; 
-            cursor: pointer; 
-            margin-top: 15px; 
-            transition: background-color 0.3s; 
-        }
-        
-        .boton-explorar:hover {
-            background-color: #ff4500; /* Cambiar color al pasar el ratón */
-        }
-
-        .contenedor-casa {
-            display: inline-block;
-            border: 2px solid #ddd;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f8f9fb;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            width: 400px;
-        }
-
-        .contenedor-casa img {
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Opacidad */
         }
 
-        .contenedor-casa:hover {
-            transform: translateY(-5px);
+        .content {
+            position: relative;
+            z-index: 1;
         }
 
-        #recorridos {
-            background-color: #f5f7fa;
-            padding: 40px 20px;
-            text-align: center;
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive; /* Fuente cursiva */
         }
 
-        #recorridos h2 {
+        .page-title {
+            font-size: 5rem; /* Tamaño del título aumentado */
+            color: white; /* Color blanco */
+            margin-bottom: 30px; /* Aumentado para más separación */
+            font-family: 'Dancing Script', cursive; /* Mismo tipo de fuente */
+            margin-top: -60px; /* Mueve el título hacia arriba */
+        }
+
+        p {
+            font-size: 1.5rem;
             margin-bottom: 30px;
-            font-size: 2em;
-            color: #3e5c76;
         }
 
-        .recorrido {
-            display: inline-block;
-            background-color: #ffffff;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            text-align: center;
-            transition: transform 0.2s ease;
+        .cta-button {
+            background-color: #ff6347; /* Rojo tomate */
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 50px; /* Espacio adicional */
         }
 
-        .recorrido:hover {
-            transform: scale(1.05);
+        .cta-button:hover {
+            background-color: #ff4500; /* Rojo anaranjado */
         }
 
-        .recorrido img {
-            width: 250px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        footer {
-            background-color: #3e5c76;
-            color: #fff;
-            padding: 30px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1em;
+        /* Estilos adicionales para el layout */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .page-title {
+                font-size: 3rem; /* Ajustar tamaño en pantallas más pequeñas */
+            }
+            p {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
+
+    <div class="navbar">
+        <div class="logo" id="logo">
+            <img src="C:/Users/evano/Downloads/LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
+        </div>
+        <div>
+            <span class="menu-icon" onclick="openNav()">&#9776;</span>
+            <button class="account-button">Cuenta</button>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="page-title">REDIVECA</div>
+            <h1>Descubre tu nuevo hogar</h1>
+            <p>Con REDIVECA, recorre virtualmente las casas de tus sueños y encuentra el lugar ideal para ti y tu familia.</p>
+            <button class="cta-button" onclick="explorar()">Explora nuestras casas</button>
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <button>Inicio</button>
+        <button>Casas Nuevas</button>
+        <button>Casas Usadas</button>
+        <button class="casas-destacadas">Casas Destacadas</button>
+        <button>Contacto</button>
+        
+        <div class="sidebar-logo">
+            <img src="C:/Users/evano/Downloads/LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
+        </div>
+
+        <button class="privacy-btn">Aviso de privacidad</button>
+    </div>
+
     <script>
-        function opn() 
-        {
-            window.location.href = "Explora";
-        }        
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("logo").classList.add("hide");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("logo").classList.remove("hide");
+        }
+
+        // Función para explorar casas
+        function explorar() {
+            window.location.href = https://github.com/LuisAlbertoOlivaC/rediveca.github.io/blob/main/Explora.html;
+        }
     </script>
-    <header>
 
-        <h1>REDIVECA</h1>
-        <div class="logo-left">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#INICIO">Inicio</a></li>
-                <li><a href="#CASAS-NUEVAS">Casas Nuevas</a></li>
-                <li><a href="#CASAS-USADAS">Casas Usadas</a></li>
-                <li><a href="#DESTACADO" class="boton-destacado">Casas Destacadas</a></li>
-                <li><a href="#CONTACTO">Contacto</a></li>
-            </ul>
-        </nav>
-
-        <div class="top-right">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="buscar()">
-                <img src="llupa.png" alt="icono">
-            </div>
-        </div>
-    </header>
-
-    <section id="destacado">
-        <h2>Recorrido Destacado</h2>
-        <div class="contenedor-casa">
-            <img src="c21.jpg" alt="Casa Destacada">
-            <button class="boton-explorar" onclick="opn()">Explorar</button>
-        </div>
-    </section>
-
-    <section id="recorridos">
-        <h2>Casas Destacadas</h2>
-        <div class="recorrido" data-nombre="Casa 1">
-            <img src="gratis-png-casa-casa-inspeccion-mt-juliet-inmobiliaria-casa-fotor-bg-remover-2024092117639.png" alt="Casa 1">
-            <p>Amplia propiedad de 5 dormitorios con jardín y piscina.</p>
-        </div>
-        <div class="recorrido" data-nombre="Casa 2">
-            <img src="png-clipart-house-house-fotor-bg-remover-2024092117622.png" alt="Casa 2">
-            <p>Agradable propiedad con jardín privado.</p>
-        </div>
-        <div class="recorrido" data-nombre="Casa 3">
-            <img src="pngtree-luxury-house-with-luxur-png-image_12452427-fotor-bg-remover-2024092117614.png" alt="Casa 3">
-            <p>Moderna y lujosa propiedad con gran espacio.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 REDIVECA. Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>
-absolute
