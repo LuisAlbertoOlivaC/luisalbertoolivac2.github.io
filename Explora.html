@@ -40,6 +40,41 @@
             color: #333; 
         }
 
+        .menu-icon {
+            display: none; 
+            font-size: 25px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .barranav input[type="text"], .barranav button {
+            margin-left: -5px;
+        }
+
+        .barranav-links {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .barranav-links a, .barranav input[type="text"], .barranav button {
+            margin-right: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .barranav-links {
+                display: none; 
+                flex-direction: column; 
+                text-align: center;
+                background-color: #3e5c76; 
+            }
+            .barranav.active .barranav-links {
+                display: flex; 
+            }
+            .menu-icon {
+                display: block; 
+            }
+        }
+
         .contenedor {
             margin-top: -50px;
             width: 100%;
@@ -60,17 +95,17 @@
         }
 
         .contenedorcasa {
-            width: 50%; 
+            width: 65%; 
             position: relative;
         }
 
         .contenedorcasa img {
-            width: 90%;
+            width: 100%;
             border: 1px solid #ddd;
         }
 
         .controles {
-            width: 25%;
+            width: 30%;
             padding: 10px;
             border-radius: 5px;
             margin-right: -30px;
@@ -101,19 +136,27 @@
             color: #ffff;
         }
 
-        /* Media Queries para Responsividad */
         @media (max-width: 768px) {
             .recorrido {
-                flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
-                align-items: center; /* Centrar elementos */
+                flex-direction: column; 
+                align-items: center;
+                width: 90%; 
+                margin: 20px; 
             }
-            .minimapa, .contenedorcasa, .controles {
-                width: 90%; /* Ajustar ancho de los elementos */
-                margin: 0; /* Remover márgenes */
-                margin-top: 20px; /* Espaciado vertical entre elementos */
+            .contenedorcasa, .controles {
+                width: 100%; 
+                margin: 10px 0; 
+                margin-top: 20px; 
             }
             .controles {
-                margin-top: 0; /* Alinear controles correctamente */
+                margin-top: 0; 
+            }
+            .contenedor {
+                height: auto; /* Deja que el contenedor crezca según su contenido */
+                margin-top: 20px; /* Añadir más espacio para que el título sea visible */
+            }
+            h1 {
+                margin-top: 15px; 
             }
         }
     </style>
@@ -121,11 +164,14 @@
 <body>
 
     <div class="barranav">
-        <a href="#">Inicio</a>
-        <a href="#">Recorridos</a>
-        <a href="#">Contacto</a>
-        <input type="text" placeholder="Buscar...">
-        <button>Buscar</button>
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+        <div class="barranav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Recorridos</a>
+            <a href="#">Contacto</a>
+            <input type="text" placeholder="Buscar...">
+            <button>Buscar</button>
+        </div>
     </div>
 
     <h1>¡Explora la vivienda!</h1>
@@ -147,6 +193,12 @@
         © 2024 REDIVECA - Todos los derechos reservados
     </footer>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.barranav');
+            nav.classList.toggle('active'); 
+        }
+    </script>
+
 </body>
 </html>
-
