@@ -1,167 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explora la Vivienda</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('avrcas.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: #333; 
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-        }
-        .barranav {
-            background-color: #3e5c76; 
-            padding: 10px;
-            width: 100%;
-            margin-top: -75px;
-            text-align: left;
-            color: #333;
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("avrcas.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        color: #333;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-        }
-        .barranav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #ffff;
-        }
-        .barranav a:hover {
-            color: #333; 
+      .barranav {
+        background-color: #3e5c76;
+        padding: 10px;
+        width: 100%;
+        margin-top: -75px;
+        text-align: left;
+        color: #333;
+      }
+
+      .barranav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: #ffff;
+      }
+
+      .barranav a:hover {
+        color: #333;
+      }
+
+      .contenedor {
+        margin-top: -50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+
+      .recorrido {
+        display: flex;
+        width: 90%;
+        background-color: #f8f9fb;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .contenedorcasa {
+        width: 65%;
+        position: relative;
+      }
+
+      .contenedorcasa img {
+        width: 100%;
+        border: 1px solid #ddd;
+      }
+
+      .controles {
+        width: 30%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-right: -30px;
+        margin-top: -100px;
+        word-wrap: break-word;
+      }
+
+      .controles p {
+        color: #3e5c76;
+        font-family: "Arial";
+        font-size: 25px;
+      }
+
+      h1 {
+        color: #3e5c76;
+        background-color: #ffff;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      footer {
+        background-color: #3e5c76;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        color: #ffff;
+      }
+
+      /* Media Queries para Responsividad */
+      @media (max-width: 768px) {
+        .recorrido {
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
         }
         .contenedor {
-            margin-top: -50px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh; 
-        }
-        .recorrido {
-            display: flex;
-            width: 90%; 
-            background-color: #f8f9fb; 
-            padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            justify-content: space-between;
-            align-items: center;
-        }
-        .minimapa {
-            width: 25%; 
-            margin-top: -40px;
-            color: #ff6347;
-            font-size: 25px;
-        }
-        .minimapa img {
-            height: 350px;
-            width: 80%;
-            border: 1px solid #ddd; 
+        margin-top: 15px;
+        width: 90%;
         }
         .contenedorcasa {
-            width: 50%;
-            position: relative;
-        }
-        .contenedorcasa img {
             width: 100%;
-            border: 1px solid #ddd;
-            margin-left: -40px;
+            margin: 0 auto; 
         }
-        .controles {
-            width: 25%; 
-            padding: 10px;
-            border-radius: 5px;
-            margin-right: -30px;
-            margin-top: -100px;
-        }
-        .controles p {
-            color: #3e5c76;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 25px;
-        }
-        .botonesselect {
-            margin-top: 20px;
-            text-align: center;
-            margin-right: 70px;
-        }
-        .botonesselect button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 5px;
-            background-color: #ff6347; 
-            color: #fff; 
-            border: none;
-            cursor: pointer;
-        }
-        .botonesselect button:hover {
-            background-color: #ff4500; 
-        }
-        h1 {
-            color: #3e5c76; 
-            background-color: #ffff;
-            padding: 5px;
-            border-radius: 5px;
-        
-        }
-        footer {
-            background-color: #3e5c76; 
-            color: white;
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-        }
-    </style>
-</head>
-<body>
 
+        .controles {
+            width: 100%; 
+            margin-top: 20px; 
+            text-align: center; 
+        }
+
+        .controles p {
+            font-size: 20px; 
+        }
+    }
+
+      @media (max-width: 768px) {
+        .barranav {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 5px;
+          padding: 5px;
+          margin-top: 0; 
+          top: 0; 
+          position: fixed; 
+          width: 100%; 
+          z-index: 10; 
+        }
+
+        .barranav a,
+        .barranav input,
+        .barranav button {
+          font-size: 12px; /* Reducir tamaño de texto */
+          padding: 5px; /* Reducir padding */
+          margin-right: 5px; /* Reducir margen entre los elementos */
+        }
+
+        .barranav input {
+          width: 50px; /* Reducir ancho del input */
+        }
+
+        .barranav button {
+          width: auto; /* Ajuste automático para el botón */
+        }
+
+        h1 {
+          font-size: 24px;
+          margin-top: 50px;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
     <div class="barranav">
-        <a href="#">Inicio</a>
-        <a href="#">Recorridos</a>
-        <a href="#">Contacto</a>
-        <input type="text" placeholder="Buscar...">
-        <button>Buscar</button>
+      <a href="#">Inicio</a>
+      <a href="#">Recorridos</a>
+      <a href="#">Contacto</a>
+      <input type="text" placeholder="Buscar..." />
+      <button>Buscar</button>
     </div>
 
     <h1>¡Explora la vivienda!</h1>
 
     <div class="contenedor">
-        <div class="recorrido">
-            <div class="minimapa">
-                <p>Estás aquí:</p>
-                <img src="minimapa.png" alt="Mapa de la casa">
-            </div>
-
-            <!--Básicamente, hay que descargar una foto 360° y meterla a panoraven, en donde te dice para subir tus fotos, después te da esta línea de código y pues solo hay que copiarla y pegarla dentro del contenedor necesario xd
-                Ya en el código, pueden ver como te da opción de pantalla completa y así, además de capacidad de modificar la altura y el ancho 
-            -->
-            <div class="contenedorcasa">
-                    <iframe width="90%" height="350px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/es/embed/eDlIevQXw0"></iframe>
-            <div class="botonesselect">
-                    <button>⬅ Anterior</button>
-                    <button>Siguiente ➡</button>
-                </div>
-            </div>
-            
-            <div class="controles">
-                <p>Recorre así:</p>
-                <p>- Usa tu ratón para mover la cámara</p>
-                <p>- Presiona los puntos para avanzar</p>
-            </div>
+      <div class="recorrido">
+        <div class="contenedorcasa">
+            <iframe width="90%" height="350px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/es/embed/eDlIevQXw0"></iframe>
         </div>
+        <div class="controles">
+          <p>Recorre así:</p>
+          <p>- Usa tu ratón (o dedos) para mover la cámara</p>
+          <p>- Presiona los puntos para avanzar</p>
+        </div>
+      </div>
     </div>
 
-    <footer>
-        © 2024 REDIVECA - Todos los derechos reservados
-    </footer>
-
-</body>
+    <footer>© 2024 REDIVECA - Todos los derechos reservados</footer>
+  </body>
 </html>
