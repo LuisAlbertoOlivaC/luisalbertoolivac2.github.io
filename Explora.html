@@ -106,29 +106,31 @@
         .recorrido {
         flex-direction: column; /* Colocar elementos uno debajo del otro */
         align-items: center;
+        justify-content: center;
         }
 
         .contenedorcasa {
-            width: 100%; /* Asegurar que la imagen 360 ocupe el ancho completo en móviles */
+            width: 90%;
+            margin: 0 auto; 
         }
 
         .controles {
-            width: 100%; /* Ajustar ancho de los controles en móviles */
-            margin-top: 20px; /* Separación vertical debajo del iframe */
-            text-align: center; /* Centrar el contenido de los controles */
+            width: 100%; 
+            margin-top: 20px; 
+            text-align: center; 
         }
 
         .controles p {
-            font-size: 18px; /* Reducir tamaño de fuente para móviles */
+            font-size: 20px; 
         }
     }
-      
 
       @media (max-width: 768px) {
         .barranav {
           display: flex;
           justify-content: space-around;
           align-items: center;
+          padding: 5px;
         }
 
         .barranav a,
@@ -149,7 +151,7 @@
 
         h1 {
           font-size: 24px;
-          margin-top: 10px;
+          margin-top: 20px;
         }
       }
 
