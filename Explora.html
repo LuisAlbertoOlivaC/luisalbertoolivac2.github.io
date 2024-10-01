@@ -1,204 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explora la Vivienda</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('avrcas.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: #333; 
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("avrcas.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        color: #333;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .barranav {
-            background-color: #3e5c76; 
-            padding: 10px;
-            width: 100%;
-            margin-top: -75px;
-            text-align: left;
-            color: #333;
-        }
+      .barranav {
+        background-color: #3e5c76;
+        padding: 10px;
+        width: 100%;
+        margin-top: -75px;
+        text-align: left;
+        color: #333;
+      }
 
-        .barranav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #ffff;
-        }
+      .barranav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: #ffff;
+      }
 
-        .barranav a:hover {
-            color: #333; 
-        }
+      .barranav a:hover {
+        color: #333;
+      }
 
-        .menu-icon {
-            display: none; 
-            font-size: 25px;
-            cursor: pointer;
-            color: #fff;
-        }
+      .contenedor {
+        margin-top: -50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
 
-        .barranav input[type="text"], .barranav button {
-            margin-left: -5px;
-        }
+      .recorrido {
+        display: flex;
+        width: 90%;
+        background-color: #f8f9fb;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .barranav-links {
-            display: flex;
-            justify-content: flex-start;
-        }
+      .contenedorcasa {
+        width: 65%;
+        position: relative;
+      }
 
-        .barranav-links a, .barranav input[type="text"], .barranav button {
-            margin-right: 15px;
-        }
+      .contenedorcasa img {
+        width: 100%;
+        border: 1px solid #ddd;
+      }
 
-        @media (max-width: 768px) {
-            .barranav-links {
-                display: none; 
-                flex-direction: column; 
-                text-align: center;
-                background-color: #3e5c76; 
-            }
-            .barranav.active .barranav-links {
-                display: flex; 
-            }
-            .menu-icon {
-                display: block; 
-            }
-        }
+      .controles {
+        width: 30%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-right: -30px;
+        margin-top: -100px;
+        word-wrap: break-word;
+      }
 
+      .controles p {
+        color: #3e5c76;
+        font-family: "Arial";
+        font-size: 25px;
+      }
+
+      h1 {
+        color: #3e5c76;
+        background-color: #ffff;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      footer {
+        background-color: #3e5c76;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        color: #ffff;
+      }
+
+      /* Media Queries para Responsividad */
+      @media (max-width: 768px) {
         .contenedor {
-            margin-top: -50px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
+          margin-top: 0;
+          height: auto; 
         }
 
         .recorrido {
-            display: flex;
-            width: 90%; 
-            background-color: #f8f9fb; 
-            padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            justify-content: space-between;
-            align-items: center;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .barranav {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
-        .contenedorcasa {
-            width: 65%; 
-            position: relative;
+        .barranav a,
+        .barranav input,
+        .barranav button {
+          display: block;
+          margin: 5px 0; /* Margen entre los elementos */
+          text-align: center; /* Centra el texto de los enlaces */
         }
 
-        .contenedorcasa img {
-            width: 100%;
-            border: 1px solid #ddd;
+        .barranav input,
+        .barranav button {
+          width: 90%;
         }
-
-        .controles {
-            width: 30%;
-            padding: 10px;
-            border-radius: 5px;
-            margin-right: -30px;
-            margin-top: -100px;
-            word-wrap: break-word;
-        }
-
-        .controles p {
-            color: #3e5c76;
-            font-family: 'Arial';
-            font-size: 25px;
-        }
-
         h1 {
-            color: #3e5c76; 
-            background-color: #ffff;
-            padding: 5px;
-            border-radius: 5px;
+          font-size: 24px;
+          margin-top: 20px;
         }
-
-        footer {
-            background-color: #3e5c76; 
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            color: #ffff;
-        }
-
-        @media (max-width: 768px) {
-            .recorrido {
-                flex-direction: column; 
-                align-items: center;
-                width: 90%; 
-                margin: 20px; 
-            }
-            .contenedorcasa, .controles {
-                width: 100%; 
-                margin: 10px 0; 
-                margin-top: 20px; 
-            }
-            .controles {
-                margin-top: 0; 
-            }
-            .contenedor {
-                height: auto; /* Deja que el contenedor crezca según su contenido */
-                margin-top: 20px; /* Añadir más espacio para que el título sea visible */
-            }
-            h1 {
-                margin-top: 15px; 
-            }
-        }
+      }
+      
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="barranav">
-        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-        <div class="barranav-links">
-            <a href="#">Inicio</a>
-            <a href="#">Recorridos</a>
-            <a href="#">Contacto</a>
-            <input type="text" placeholder="Buscar...">
-            <button>Buscar</button>
-        </div>
+      <a href="#">Inicio</a>
+      <a href="#">Recorridos</a>
+      <a href="#">Contacto</a>
+      <input type="text" placeholder="Buscar..." />
+      <button>Buscar</button>
     </div>
 
     <h1>¡Explora la vivienda!</h1>
 
     <div class="contenedor">
-        <div class="recorrido">
-            <div class="contenedorcasa">
-                <iframe width="100%" height="350px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/es/embed/BlWLci3pIE"></iframe>            
-            </div>
-            <div class="controles">
-                <p>Recorre así:</p>
-                <p>- Usa tu ratón para mover la cámara</p>
-                <p>- Presiona los puntos para avanzar</p>
-            </div>
+      <div class="recorrido">
+        <div class="contenedorcasa">
+          <iframe
+            width="100%"
+            height="350px"
+            allowfullscreen="true"
+            allow="accelerometer; magnetometer; gyroscope"
+            style="
+              display: block;
+              margin: 20px auto;
+              border: 0 none;
+              max-width: 880px;
+              border-radius: 8px;
+              box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11),
+                0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11),
+                0 6px 8px rgba(0, 0, 0, 0.11), 0 8px 16px rgba(0, 0, 0, 0.11);
+            "
+            src="https://panoraven.com/es/embed/BlWLci3pIE"
+          ></iframe>
         </div>
+        <div class="controles">
+          <p>Recorre así:</p>
+          <p>- Usa tu ratón para mover la cámara</p>
+          <p>- Presiona los puntos para avanzar</p>
+        </div>
+      </div>
     </div>
 
-    <footer>
-        © 2024 REDIVECA - Todos los derechos reservados
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            const nav = document.querySelector('.barranav');
-            nav.classList.toggle('active'); 
-        }
-    </script>
-
-</body>
+    <footer>© 2024 REDIVECA - Todos los derechos reservados</footer>
+  </body>
 </html>
