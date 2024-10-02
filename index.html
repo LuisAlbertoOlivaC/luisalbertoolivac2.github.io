@@ -1,242 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REDIVECA - Tours Virtuales</title>
+    <!-- Metadatos y configuración básica del documento -->
+    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres a UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que el diseño sea responsive en dispositivos móviles -->
+    <title>REDIVECA - Tours Virtuales</title> <!-- Título de la página web, que aparecerá en la pestaña del navegador -->
     
     <!-- Google Fonts: Dancing Script -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
-    
+    <!-- Incluye la fuente 'Dancing Script' desde Google Fonts, con peso 700 (negrita) -->
+
     <style>
+        /* Reseteo de márgenes y paddings en todos los elementos */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* Configuración general del cuerpo del documento */
         body, html {
-            height: 100%;
-            font-family: 'Arial', sans-serif;
+            height: 100%; /* La altura de body y html es igual al 100% de la ventana */
+            font-family: 'Arial', sans-serif; /* Establece 'Arial' como fuente por defecto */
             background-color: #d0e4f7; /* Fondo azul claro */
-            color: #333; /* Texto oscuro general */
+            color: #333; /* Texto en un tono oscuro */
         }
-        /* Estilos para la cabecera */
+
+        /* Estilos para la barra de navegación superior */
         .navbar {
-            position: fixed;
+            position: fixed; /* Mantiene la barra fija en la parte superior mientras se desplaza la página */
             top: 20px;
             left: 20px;
             right: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
+            display: flex; /* Alinea los elementos de la barra en un formato flexible */
+            justify-content: space-between; /* Coloca el logo y el menú en extremos opuestos */
+            align-items: center; /* Alinea verticalmente los elementos */
+            z-index: 1000; /* Mantiene la barra por encima de otros elementos */
         }
+
+        /* Configuración del logo dentro de la barra de navegación */
         .logo img {
-            width: 120px; /* Tamaño ajustado del logo */
-            height: auto;
-            transition: opacity 0.3s ease-in-out;
+            width: 120px; /* Ajusta el tamaño del logo a un ancho de 120px */
+            height: auto; /* Mantiene la proporción del logo */
+            transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
         }
-        /* Ocultar logo cuando el sidebar esté abierto */
+
+        /* Cuando el sidebar esté abierto, oculta el logo */
         .logo.hide {
-            opacity: 0;
+            opacity: 0; /* El logo se desvanece */
         }
+
+        /* Estilos del ícono de menú (≡) en la barra de navegación */
         .menu-icon {
-            cursor: pointer;
-            font-size: 30px;
-            color: #fff; /* Blanco */
-            background-color: #3e5c76; /* Azul oscuro */
-            padding: 10px;
-            border-radius: 5px;
-            margin-right: 10px; /* Espacio entre el botón de menú y el de cuenta */
+            cursor: pointer; /* El cursor cambia a una mano cuando pasa sobre el ícono */
+            font-size: 30px; /* Tamaño del ícono del menú */
+            color: #fff; /* Color blanco del ícono */
+            background-color: #3e5c76; /* Fondo azul oscuro para el ícono */
+            padding: 10px; /* Espaciado alrededor del ícono */
+            border-radius: 5px; /* Bordes redondeados */
+            margin-right: 10px; /* Espaciado a la derecha del ícono */
         }
-        /* Estilo compartido para los botones */
+
+        /* Estilos compartidos para los botones en toda la página */
         .cta-button {
-            background-color: #ff6347; /* Rojo tomate */
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            background-color: #ff6347; /* Fondo rojo tomate */
+            border: none; /* Sin borde */
+            padding: 10px 20px; /* Espaciado interno (padding) en el botón */
+            color: white; /* Texto blanco */
+            font-size: 20px; /* Tamaño del texto */
+            cursor: pointer; /* Cursor de mano cuando se pasa por el botón */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
         }
+
+        /* Cambio de color del botón cuando el ratón pasa sobre él */
         .cta-button:hover {
-            background-color: #ff4500; /* Rojo anaranjado */
+            background-color: #ff4500; /* Cambia a rojo anaranjado */
         }
-        /* Estilos del sidebar */
+
+        /* Estilos del sidebar (barra lateral de navegación) */
         .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
+            height: 100%; /* Ocupa toda la altura de la página */
+            width: 0; /* Comienza con ancho 0 (oculto) */
+            position: fixed; /* Fijo en la parte izquierda de la pantalla */
             top: 0;
             left: 0;
-            background-color: #3e5c76; /* Azul oscuro */
-            overflow-x: hidden;
-            transition: 0.3s;
-            padding-top: 60px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background-color: #3e5c76; /* Fondo azul oscuro */
+            overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+            transition: 0.3s; /* Transición suave cuando se abre o cierra el sidebar */
+            padding-top: 60px; /* Espacio en la parte superior del sidebar */
+            z-index: 999; /* Aparece encima de otros elementos */
+            display: flex; /* Flexbox para organizar los elementos */
+            flex-direction: column; /* Los elementos del sidebar se alinean verticalmente */
+            justify-content: space-between; /* Distribución de espacio entre elementos */
         }
+
+        /* Estilo para los botones del sidebar */
         .sidebar button {
-            padding: 15px 20px;
-            margin: 10px auto;
-            font-size: 20px; /* Tamaño de la letra aumentado */
-            color: #ffffff; /* Blanco */
-            background-color: #3e5c76; /* Mismo color que el fondo del menú */
-            border: none;
-            border-radius: 8px;
-            display: block;
-            text-align: center;
-            letter-spacing: 2px; /* Separación de letras */
-            width: 80%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            padding: 15px 20px; /* Espaciado interno */
+            margin: 10px auto; /* Centra los botones y añade un margen vertical */
+            font-size: 20px; /* Tamaño del texto en los botones */
+            color: #ffffff; /* Texto blanco */
+            background-color: #3e5c76; /* Fondo del mismo color que el sidebar */
+            border: none; /* Sin borde */
+            border-radius: 8px; /* Bordes redondeados */
+            display: block; /* Botón en bloque, ocupa todo el ancho disponible */
+            text-align: center; /* Alineación centrada del texto */
+            letter-spacing: 2px; /* Espaciado entre letras */
+            width: 80%; /* Ancho del botón al 80% */
+            cursor: pointer; /* Cursor de mano cuando se pasa sobre el botón */
+            transition: background-color 0.3s ease; /* Transición suave para el cambio de color al hacer hover */
         }
+
+        /* Estilo específico para el botón de "Casas Destacadas" */
         .sidebar button.casas-destacadas {
             background-color: #ff6347; /* Rojo tomate */
         }
+
+        /* Cambia el fondo de los botones cuando el ratón pasa por encima */
         .sidebar button:hover {
-            background-color: #6a7d94; /* Azul más claro al hacer hover */
+            background-color: #6a7d94; /* Azul más claro */
         }
+
+        /* Estilos para el botón de cerrar el sidebar */
         .sidebar .closebtn {
-            position: absolute;
+            position: absolute; /* Posiciona el botón de cerrar en una posición fija dentro del sidebar */
             top: 10px;
             right: 25px;
-            font-size: 36px;
-            color: white;
-            cursor: pointer;
+            font-size: 36px; /* Tamaño del ícono de cerrar */
+            color: white; /* Ícono blanco */
+            cursor: pointer; /* Cursor de mano */
         }
+
+        /* Contenedor para el logo dentro del sidebar */
         .sidebar .sidebar-logo {
-            padding: 20px;
-            text-align: center;
+            padding: 20px; /* Espaciado interno */
+            text-align: center; /* Alineación centrada del contenido */
         }
+
+        /* Estilo del logo dentro del sidebar */
         .sidebar .sidebar-logo img {
-            width: 100px;
-            height: auto;
+            width: 100px; /* Ancho ajustado del logo */
+            height: auto; /* Mantiene la proporción del logo */
         }
+
+        /* Botón de Aviso de privacidad en el sidebar */
         .sidebar .privacy-btn {
-            padding: 15px 20px;
-            margin: 10px auto;
-            font-size: 14px; /* Texto más pequeño */
-            color: #ffffff; /* Blanco */
-            background-color: #3e5c76; /* Mismo color que el fondo */
-            border: none;
-            border-radius: 8px;
-            text-align: center;
-            width: 80%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            padding: 15px 20px; /* Espaciado interno */
+            margin: 10px auto; /* Margen para centrar el botón */
+            font-size: 14px; /* Tamaño más pequeño para el texto */
+            color: #ffffff; /* Texto blanco */
+            background-color: #3e5c76; /* Mismo color que el sidebar */
+            border: none; /* Sin borde */
+            border-radius: 8px; /* Bordes redondeados */
+            text-align: center; /* Alineación centrada */
+            width: 80%; /* Ancho al 80% */
+            cursor: pointer; /* Cursor de mano */
+            transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
         }
+
+        /* Cambia el color del botón de privacidad al pasar el ratón sobre él */
         .sidebar .privacy-btn:hover {
-            background-color: #6a7d94; /* Azul más claro al hacer hover */
+            background-color: #6a7d94; /* Azul más claro */
         }
-        /* Estilos para la sección hero */
+
+        /* Sección hero (la primera sección visible de la página) */
         .hero {
-            background-image: url('CASA%20FONDO.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            flex-direction: column;
+            background-image: url('CASA%20FONDO.jpg'); /* Imagen de fondo */
+            background-size: cover; /* La imagen cubre todo el fondo */
+            background-position: center; /* Centra la imagen */
+            position: relative; /* Permite que otros elementos se posicionen en relación a esta sección */
+            height: 100vh; /* Ocupa la altura completa de la ventana */
+            display: flex; /* Flexbox para organizar el contenido */
+            align-items: center; /* Alineación vertical centrada */
+            justify-content: center; /* Alineación horizontal centrada */
+            color: white; /* Texto blanco */
+            text-align: center; /* Texto centrado */
+            flex-direction: column; /* Los elementos dentro se apilan verticalmente */
         }
+
+        /* Superposición oscura sobre la imagen de fondo */
         .overlay {
-            position: absolute;
+            position: absolute; /* Posiciona la superposición encima de todo */
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Opacidad */
+            width: 100%; /* Cubre todo el ancho */
+            height: 100%; /* Cubre toda la altura */
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo negro con opacidad */
         }
+
+        /* Contenedor para el contenido textual de la sección hero */
         .content {
-            position: relative;
-            z-index: 1;
+            position: relative; /* Para asegurarse de que se posicione sobre la superposición */
+            z-index: 1; /* Asegura que el contenido esté por encima de la superposición */
         }
+
+        /* Título principal en la sección hero */
         h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            font-family: 'Dancing Script', cursive; /* Fuente cursiva */
+            font-size: 4rem; /* Tamaño del texto del título */
+            margin-bottom: 20px; /* Margen inferior */
+            font-family: 'Dancing Script', cursive; /* Fuente cursiva personalizada */
         }
+
+        /* Título grande específico de la página */
         .page-title {
-            font-size: 5rem; /* Tamaño del título aumentado */
+            font-size: 5rem; /* Tamaño grande para el título principal */
             color: white; /* Color blanco */
-            margin-bottom: 30px; /* Aumentado para más separación */
-            font-family: 'Dancing Script', cursive; /* Mismo tipo de fuente */
-            margin-top: -60px; /* Mueve el título hacia arriba */
+            margin-bottom: 30px; /* Margen inferior */
+            font-family: 'Dancing Script', cursive; /* Fuente cursiva */
+            margin-top: -60px; /* Ajusta la posición del título hacia arriba */
         }
+
+        /* Estilos para los párrafos */
         p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-size: 1.5rem; /* Tamaño del texto */
+            margin-bottom: 30px; /* Margen inferior */
         }
-        /* Estilos adicionales para el layout */
+
+        /* Media query para ajustar el diseño en pantallas más pequeñas */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.5rem; /* Reduce el tamaño del título */
             }
             .page-title {
-                font-size: 3rem; /* Ajustar tamaño en pantallas más pequeñas */
+                font-size: 3rem; /* Reduce el tamaño del título principal */
             }
             p {
-                font-size: 1.2rem;
+                font-size: 1.2rem; /* Reduce el tamaño del texto del párrafo */
             }
         }
     </style>
 </head>
 <body>
+    <!-- Barra de navegación con logo y botón de menú -->
     <div class="navbar">
         <div class="logo" id="logo">
             <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
         </div>
         <div>
-            <span class="menu-icon" onclick="openNav()">&#9776;</span>
-            <button class="cta-button" onclick="login()">Cuenta</button>
+            <span class="menu-icon" onclick="openNav()">&#9776;</span> <!-- Icono del menú que abre el sidebar -->
+            <button class="cta-button" onclick="login()">Cuenta</button> <!-- Botón que redirige a la página de login -->
         </div>
     </div>
+
+    <!-- Sección hero con fondo, título y botones -->
     <div class="hero">
-        <div class="overlay"></div>
+        <div class="overlay"></div> <!-- Superposición oscura sobre la imagen de fondo -->
         <div class="content">
-            <div class="page-title">REDIVECA</div>
+            <div class="page-title">REDIVECA</div> <!-- Título principal de la página -->
             <h1>Descubre tu nuevo hogar</h1>
             <p>Con REDIVECA, recorre virtualmente las casas de tus sueños y encuentra el lugar ideal para ti y tu familia.</p>
-            <button class="cta-button" onclick="explorar()">Explora nuestras casas</button>
+            <button class="cta-button" onclick="explorar()">Explora nuestras casas</button> <!-- Botón de llamada a la acción -->
         </div>
     </div>
+
+    <!-- Sidebar (barra lateral de navegación) -->
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <button>Inicio</button>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> <!-- Botón para cerrar el sidebar -->
+        <button>Inicio</button> <!-- Botón de navegación dentro del sidebar -->
         <button>Casas Nuevas</button>
         <button>Casas Usadas</button>
-        <button class="casas-destacadas">Casas Destacadas</button>
-        <button>Contacto</button>
-        
+        <button class="casas-destacadas">Casas Destacadas</button> <!-- Botón con clase especial para casas destacadas -->
+        <button>Contacto</button> <!-- Botón de contacto -->
+
+        <!-- Logo dentro del sidebar -->
         <div class="sidebar-logo">
             <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
         </div>
-        <button class="privacy-btn">Aviso de privacidad</button>
+        <button class="privacy-btn">Aviso de privacidad</button> <!-- Botón de aviso de privacidad -->
     </div>
+
+    <!-- JavaScript para controlar el comportamiento del sidebar y los botones -->
     <script>
+        // Función para abrir el sidebar
         function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("logo").classList.add("hide");
+            document.getElementById("mySidebar").style.width = "250px"; // Expande el sidebar a 250px de ancho
+            document.getElementById("logo").classList.add("hide"); // Oculta el logo al abrir el sidebar
         }
+
+        // Función para cerrar el sidebar
         function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("logo").classList.remove("hide");
+            document.getElementById("mySidebar").style.width = "0"; // Reduce el sidebar a 0px de ancho
+            document.getElementById("logo").classList.remove("hide"); // Vuelve a mostrar el logo al cerrar el sidebar
         }
-        // Función para explorar casas
+
+        // Función para explorar casas, redirige a una página
         function explorar() {
-            window.location.href = "Explora.html";
+            window.location.href = "Explora.html"; // Redirige a la página de exploración
         }
-        // Función para redirigir al login (igualmente a 'Explora.html')
+
+        // Función para redirigir al login
         function login() {
-            window.location.href = "login.html";
+            window.location.href = "login.html"; // Redirige a la página de login
         }
     </script>
 </body>
 </html>
+
