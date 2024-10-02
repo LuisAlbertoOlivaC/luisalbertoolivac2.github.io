@@ -273,110 +273,170 @@
             background-color: #ff6347;
             border: none;
             border-radius: 8px;
-            display: block;
-            text-align: center;
-            width: 40%;
             cursor: pointer;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
             transition: background-color 0.3s ease;
-            /* Estilo del botón de llamada a la acción en la sección principal */
+            /* Estilo del botón "Explorar" en la sección principal */
         }
 
         .cta-button-explorar:hover {
             background-color: #ff4500;
             /* Cambia el color de fondo cuando se pasa el mouse sobre el botón */
         }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            /* Estilo para el contenido principal */
+            margin: 20px 100px;
+        }
+
+        .featured-houses {
+            flex: 0 0 70%;
+            /* Contenedor para las casas destacadas */
+            margin-right: 20px;
+        }
+
+        .featured-house {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+            /* Estilo para cada casa destacada */
+        }
+
+        .featured-house img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+            /* Estilo de la imagen de cada casa destacada */
+        }
+
+        .featured-house h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            /* Estilo del título de cada casa */
+        }
+
+        .featured-house p {
+            font-size: 1rem;
+            /* Estilo de la descripción de cada casa */
+        }
+
+        .sidebar-content {
+            flex: 0 0 25%;
+            /* Contenedor para la barra lateral */
+            background-color: #3e5c76;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: white;
+            /* Estilo de la barra lateral */
+        }
+
+        .sidebar-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            /* Estilo del título en la barra lateral */
+        }
+
+        .footer {
+            background-color: #3e5c76;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            /* Estilo del pie de página */
+        }
+
+        .footer p {
+            margin: 5px 0;
+            /* Estilo de los párrafos en el pie de página */
+        }
     </style>
+    <!-- Estilos para la página -->
 </head>
 
 <body>
-    <!-- Cuerpo del documento HTML -->
-
-    <header class="navbar">
-        <!-- Cabecera fija con la barra de navegación -->
+    <div class="navbar">
         <div class="logo">
-            <img src="C:/Users/evano/Downloads/logo.jpeg" alt="Logo de la Empresa">
-            <!-- Logo en la barra de navegación -->
+            <img src="C:/Users/evano/Downloads/logo.jpg" alt="Logo de REDIVECA">
+            <!-- Logo de la empresa -->
         </div>
         <div class="menu-container">
-            <div class="menu-icon" onclick="openNav()">
-                <!-- Ícono de menú para abrir la barra lateral -->
-                <i class="fas fa-bars"></i>
-            </div>
-            <button class="cta-button-cuenta-navbar">
-                <!-- Botón de "Mi cuenta" en la barra de navegación -->
-                <i class="fas fa-user"></i> Mi cuenta
-            </button>
+            <i class="menu-icon fas fa-bars" onclick="toggleSidebar()"></i>
+            <button class="cta-button-cuenta-navbar"><i class="fas fa-user"></i> Mi Cuenta</button>
+            <!-- Botón de la cuenta de usuario -->
         </div>
-    </header>
-
-    <div id="mySidebar" class="sidebar">
-        <!-- Barra lateral que aparece al hacer clic en el menú -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <!-- Botón para cerrar la barra lateral -->
-        <div class="sidebar-logo">
-            <img src="C:/Users/evano/Downloads/logo.jpeg" alt="Logo de la Empresa">
-            <!-- Logo dentro de la barra lateral -->
-        </div>
-        <button>
-            <i class="fas fa-home"></i> Inicio
-            <!-- Botón de inicio dentro de la barra lateral -->
-        </button>
-        <button>
-            <i class="fas fa-info-circle"></i> ¿Quiénes somos?
-            <!-- Botón para la sección "¿Quiénes somos?" -->
-        </button>
-        <button class="casas-destacadas">
-            <i class="fas fa-star"></i> Casas destacadas
-            <!-- Botón destacado para "Casas destacadas" -->
-        </button>
-        <button>
-            <i class="fas fa-phone"></i> Contáctanos
-            <!-- Botón de contacto -->
-        </button>
-        <button class="privacy-btn">
-            <i class="fas fa-file-alt"></i> Aviso de privacidad
-            <!-- Botón para el aviso de privacidad -->
-        </button>
     </div>
 
-    <section class="hero">
-        <!-- Sección principal con imagen de fondo -->
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <div class="sidebar-logo">
+            <img src="C:/Users/evano/Downloads/logo.jpg" alt="Logo de REDIVECA">
+        </div>
+        <div class="sidebar-content">
+            <button class="casas-destacadas" onclick="location.href='casas.html'"><i class="fas fa-star"></i> Casas Destacadas</button>
+            <button onclick="location.href='tour.html'"><i class="fas fa-camera"></i> Tours Virtuales</button>
+            <button onclick="location.href='about.html'"><i class="fas fa-info-circle"></i> Acerca de</button>
+            <button class="privacy-btn" onclick="location.href='privacy.html'"><i class="fas fa-shield-alt"></i> Aviso de Privacidad</button>
+        </div>
+    </div>
+
+    <div class="hero">
         <div class="overlay"></div>
-        <!-- Capa de superposición oscura sobre la imagen -->
         <div class="content">
             <h1 class="page-title">REDIVECA</h1>
-            <!-- Título principal de la página -->
-            <p class="eslogan">Los Mejores Tours Virtuales</p>
-            <!-- Eslogan de la empresa -->
+            <p class="eslogan">Descubre tu nuevo hogar</p>
             <button class="cta-button-explorar">Explorar</button>
-            <!-- Botón de llamada a la acción "Explorar" -->
         </div>
-    </section>
+    </div>
+
+    <div class="main-content">
+        <div class="featured-houses">
+            <h2>Casas Destacadas</h2>
+            <!-- Título de la sección de casas destacadas -->
+            <div class="featured-house">
+                <img src="C:/Users/evano/Downloads/house1.jpg" alt="Casa 1">
+                <h2>Casa Moderna</h2>
+                <p>Una hermosa casa moderna en el corazón de la ciudad.</p>
+            </div>
+            <div class="featured-house">
+                <img src="C:/Users/evano/Downloads/house2.jpg" alt="Casa 2">
+                <h2>Casa Campestre</h2>
+                <p>Disfruta de la tranquilidad en esta casa campestre.</p>
+            </div>
+            <div class="featured-house">
+                <img src="C:/Users/evano/Downloads/house3.jpg" alt="Casa 3">
+                <h2>Casa de Playa</h2>
+                <p>Relájate en esta espectacular casa de playa.</p>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <h3>Más Información</h3>
+            <p>Contáctanos para más detalles sobre nuestras propiedades.</p>
+            <button onclick="location.href='contact.html'">Contáctanos</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 REDIVECA. Todos los derechos reservados.</p>
+    </div>
 
     <script>
-        // Función para abrir la barra lateral
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-        }
-
-        // Función para cerrar la barra lateral
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-
-        // Detectar el desplazamiento de la página y ocultar/mostrar el logo
-        window.onscroll = function() {
-            const logo = document.querySelector('.navbar .logo img');
-            if (window.scrollY > 100) {
-                logo.classList.add('hide');
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.style.width === "250px") {
+                closeSidebar();
             } else {
-                logo.classList.remove('hide');
+                sidebar.style.width = "250px";
             }
-        };
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+        }
     </script>
 </body>
 </html>
-
