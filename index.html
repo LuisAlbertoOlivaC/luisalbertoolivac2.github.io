@@ -1,114 +1,172 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
+<!-- Define el tipo de documento como HTML y el idioma como español -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- Define la codificación de caracteres como UTF-8 para admitir caracteres especiales -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura la ventana gráfica para que el sitio sea responsive en dispositivos móviles -->
     <title>REDIVECA - Tours Virtuales</title>
+    <!-- Define el título de la página que aparece en la pestaña del navegador -->
     
-    <!-- Google Fonts: Dancing Script -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
-    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap">
+    <!-- Incluye la fuente 'Open Sans' desde Google Fonts -->
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Incluye la biblioteca Font Awesome para usar íconos en el proyecto -->
+
     <style>
+        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        /* Define márgenes y relleno en cero para todos los elementos, asegurando que el tamaño de los elementos incluya el borde y el relleno */
 
         body, html {
             height: 100%;
             font-family: 'Arial', sans-serif;
-            background-color: #d0e4f7; /* Fondo azul claro */
-            color: #333; /* Texto oscuro general */
+            background-color: #d0e4f7;
+            /* Establece un fondo azul claro para todo el cuerpo */
+            color: #333;
+            /* Color de texto general en gris oscuro */
         }
 
-        /* Estilos para la cabecera */
+        /* Estilos para la cabecera (barra de navegación) */
         .navbar {
             position: fixed;
+            /* Fija la barra de navegación en la parte superior */
             top: 20px;
             left: 20px;
             right: 20px;
             display: flex;
             justify-content: space-between;
+            /* Distribuye el contenido en los extremos */
             align-items: center;
             z-index: 1000;
+            /* Asegura que esté por encima de otros elementos */
         }
 
         .logo img {
-            width: 120px; /* Tamaño ajustado del logo */
+            width: 120px;
             height: auto;
+            /* Define el tamaño del logo de la barra de navegación */
             transition: opacity 0.3s ease-in-out;
+            /* Transición para suavizar el cambio de opacidad */
         }
 
-        /* Ocultar logo cuando el sidebar esté abierto */
         .logo.hide {
             opacity: 0;
+            visibility: hidden;
+            /* Oculta el logo cuando se activa la clase 'hide' */
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+            /* Alinea el ícono del menú y el botón de cuenta */
         }
 
         .menu-icon {
             cursor: pointer;
+            /* Cambia el cursor a pointer cuando el ícono se puede hacer clic */
             font-size: 30px;
-            color: #fff; /* Blanco */
-            background-color: #3e5c76; /* Azul oscuro */
+            color: #fff;
+            background-color: #3e5c76;
             padding: 10px;
             border-radius: 5px;
-            margin-right: 10px; /* Espacio entre el botón de menú y el de cuenta */
-        }
-
-        .account-button {
-            background-color: #ff6347; /* Rojo tomate */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            font-size: 20px; /* Tamaño del texto */
-            cursor: pointer;
-            border-radius: 5px;
+            margin-right: 10px;
             transition: background-color 0.3s;
+            /* Define la apariencia del ícono del menú y agrega transición en el color de fondo */
         }
 
-        .account-button:hover {
-            background-color: #ff4500; /* Rojo anaranjado al hacer hover */
+        .menu-icon:hover {
+            background-color: #6a7d94;
+            /* Cambia el color de fondo cuando se pasa el mouse sobre el ícono del menú */
         }
 
-        /* Estilos del sidebar */
+        .cta-button-cuenta-navbar {
+            padding: 8px 15px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #ff6347;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            /* Define el estilo del botón "Mi Cuenta" en la barra de navegación */
+        }
+
+        .cta-button-cuenta-navbar i {
+            margin-right: 8px;
+            /* Agrega margen a la derecha del ícono dentro del botón */
+        }
+
+        .cta-button-cuenta-navbar:hover {
+            background-color: #ff4500;
+            /* Cambia el color de fondo cuando se pasa el mouse sobre el botón */
+        }
+
         .sidebar {
             height: 100%;
             width: 0;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #3e5c76; /* Azul oscuro */
+            background-color: #3e5c76;
             overflow-x: hidden;
-            transition: 0.3s;
+            transition: width 0.5s ease;
             padding-top: 60px;
             z-index: 999;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            /* Define el estilo de la barra lateral que aparece al hacer clic en el menú */
         }
 
         .sidebar button {
             padding: 15px 20px;
             margin: 10px auto;
-            font-size: 20px; /* Tamaño de la letra aumentado */
-            color: #ffffff; /* Blanco */
-            background-color: #3e5c76; /* Mismo color que el fondo del menú */
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #3e5c76;
             border: none;
             border-radius: 8px;
             display: block;
             text-align: center;
-            letter-spacing: 2px; /* Separación de letras */
+            letter-spacing: 2px;
             width: 80%;
             cursor: pointer;
+            font-weight: bold;
             transition: background-color 0.3s ease;
+            /* Botones dentro de la barra lateral */
         }
 
-        .sidebar button.casas-destacadas {
-            background-color: #ff6347; /* Rojo tomate */
+        .sidebar button i {
+            margin-right: 10px;
+            /* Espacio entre el ícono y el texto en los botones */
         }
 
         .sidebar button:hover {
-            background-color: #6a7d94; /* Azul más claro al hacer hover */
+            background-color: #6a7d94;
+            /* Cambia el color de fondo cuando se pasa el mouse sobre los botones */
+        }
+
+        .sidebar button.casas-destacadas {
+            background-color: #ff6347;
+            /* Estilo especial para el botón de casas destacadas */
+        }
+
+        .sidebar button.casas-destacadas:hover {
+            background-color: #ff4500;
+            /* Color de fondo diferente cuando se pasa el mouse sobre el botón de casas destacadas */
         }
 
         .sidebar .closebtn {
@@ -118,39 +176,43 @@
             font-size: 36px;
             color: white;
             cursor: pointer;
+            /* Botón para cerrar la barra lateral */
         }
 
         .sidebar .sidebar-logo {
             padding: 20px;
             text-align: center;
+            /* Logo dentro de la barra lateral */
         }
 
         .sidebar .sidebar-logo img {
             width: 100px;
             height: auto;
+            /* Tamaño del logo en la barra lateral */
         }
 
         .sidebar .privacy-btn {
             padding: 15px 20px;
             margin: 10px auto;
-            font-size: 14px; /* Texto más pequeño */
-            color: #ffffff; /* Blanco */
-            background-color: #3e5c76; /* Mismo color que el fondo */
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #3e5c76;
             border: none;
             border-radius: 8px;
             text-align: center;
             width: 80%;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            /* Botón para el aviso de privacidad */
         }
 
         .sidebar .privacy-btn:hover {
-            background-color: #6a7d94; /* Azul más claro al hacer hover */
+            background-color: #6a7d94;
+            /* Cambia el color de fondo cuando se pasa el mouse sobre el botón de privacidad */
         }
 
-        /* Estilos para la sección hero */
         .hero {
-            background-image: url('CASA%20FONDO.jpg');
+            background-image: url('C:/Users/evano/Downloads/pixelcut-export (1).jpeg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -161,6 +223,13 @@
             color: white;
             text-align: center;
             flex-direction: column;
+            background-attachment: fixed;
+            /* Estilo de la sección principal con una imagen de fondo */
+        }
+
+        .content {
+            margin-top: -100px;
+            /* Mueve el texto hacia arriba */
         }
 
         .overlay {
@@ -169,129 +238,145 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Opacidad */
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+            /* Capa de superposición para oscurecer la imagen de fondo */
         }
 
         .content {
             position: relative;
             z-index: 1;
+            /* Asegura que el contenido esté por encima de la superposición */
         }
 
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            font-family: 'Dancing Script', cursive; /* Fuente cursiva */
-        }
-
-        .page-title {
-            font-size: 5rem; /* Tamaño del título aumentado */
-            color: white; /* Color blanco */
-            margin-bottom: 30px; /* Aumentado para más separación */
-            font-family: 'Dancing Script', cursive; /* Mismo tipo de fuente */
-            margin-top: -60px; /* Mueve el título hacia arriba */
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            background-color: #ff6347; /* Rojo tomate */
-            border: none;
-            padding: 15px 30px;
+        h1.page-title {
+            font-size: 5rem;
             color: white;
-            font-size: 1.2rem;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            /* Estilo del título principal */
+        }
+
+        p.eslogan {
+            font-size: 2.5rem;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Estilo del eslogan debajo del título */
+        }
+
+        .cta-button-explorar {
+            padding: 10px 18px;
+            margin: 12px auto;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #ff6347;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            text-align: center;
+            width: 40%;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 50px; /* Espacio adicional */
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+            /* Estilo del botón de llamada a la acción en la sección principal */
         }
 
-        .cta-button:hover {
-            background-color: #ff4500; /* Rojo anaranjado */
-        }
-
-        /* Estilos adicionales para el layout */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            .page-title {
-                font-size: 3rem; /* Ajustar tamaño en pantallas más pequeñas */
-            }
-            p {
-                font-size: 1.2rem;
-            }
+        .cta-button-explorar:hover {
+            background-color: #ff4500;
+            /* Cambia el color de fondo cuando se pasa el mouse sobre el botón */
         }
     </style>
 </head>
+
 <body>
+    <!-- Cuerpo del documento HTML -->
 
-    <div class="navbar">
-        <div class="logo" id="logo">
-            <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
+    <header class="navbar">
+        <!-- Cabecera fija con la barra de navegación -->
+        <div class="logo">
+            <img src="C:/Users/evano/Downloads/logo.jpeg" alt="Logo de la Empresa">
+            <!-- Logo en la barra de navegación -->
         </div>
-        <div>
-            <span class="menu-icon" onclick="openNav()">&#9776;</span>
-            <button class="cta-button"onclick="login()">Cuenta</button>
+        <div class="menu-container">
+            <div class="menu-icon" onclick="openNav()">
+                <!-- Ícono de menú para abrir la barra lateral -->
+                <i class="fas fa-bars"></i>
+            </div>
+            <button class="cta-button-cuenta-navbar">
+                <!-- Botón de "Mi cuenta" en la barra de navegación -->
+                <i class="fas fa-user"></i> Mi cuenta
+            </button>
         </div>
-    </div>
-
-    <div class="hero">
-        <div class="overlay"></div>
-        <div class="content">
-            <div class="page-title">REDIVECA</div>
-            <h1>Descubre tu nuevo hogar</h1>
-            <p>Con REDIVECA, recorre virtualmente las casas de tus sueños y encuentra el lugar ideal para ti y tu familia.</p>
-            <button class="cta-button" onclick="explorar()">Explora nuestras casas</button>
-        </div>
-    </div>
+    </header>
 
     <div id="mySidebar" class="sidebar">
+        <!-- Barra lateral que aparece al hacer clic en el menú -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <button>Inicio</button>
-        <button>Casas Nuevas</button>
-        <button>Casas Usadas</button>
-        <button class="casas-destacadas">Casas Destacadas</button>
-        <button>Contacto</button>
-        
+        <!-- Botón para cerrar la barra lateral -->
         <div class="sidebar-logo">
-            <img src="LOGO-RDVC-fotor-bg-remover-20240925211419.png" alt="Logo REDIVECA">
+            <img src="C:/Users/evano/Downloads/logo.jpeg" alt="Logo de la Empresa">
+            <!-- Logo dentro de la barra lateral -->
         </div>
-
-        <button class="privacy-btn">Aviso de privacidad</button>
+        <button>
+            <i class="fas fa-home"></i> Inicio
+            <!-- Botón de inicio dentro de la barra lateral -->
+        </button>
+        <button>
+            <i class="fas fa-info-circle"></i> ¿Quiénes somos?
+            <!-- Botón para la sección "¿Quiénes somos?" -->
+        </button>
+        <button class="casas-destacadas">
+            <i class="fas fa-star"></i> Casas destacadas
+            <!-- Botón destacado para "Casas destacadas" -->
+        </button>
+        <button>
+            <i class="fas fa-phone"></i> Contáctanos
+            <!-- Botón de contacto -->
+        </button>
+        <button class="privacy-btn">
+            <i class="fas fa-file-alt"></i> Aviso de privacidad
+            <!-- Botón para el aviso de privacidad -->
+        </button>
     </div>
 
+    <section class="hero">
+        <!-- Sección principal con imagen de fondo -->
+        <div class="overlay"></div>
+        <!-- Capa de superposición oscura sobre la imagen -->
+        <div class="content">
+            <h1 class="page-title">REDIVECA</h1>
+            <!-- Título principal de la página -->
+            <p class="eslogan">Los Mejores Tours Virtuales</p>
+            <!-- Eslogan de la empresa -->
+            <button class="cta-button-explorar">Explorar</button>
+            <!-- Botón de llamada a la acción "Explorar" -->
+        </div>
+    </section>
+
     <script>
+        // Función para abrir la barra lateral
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("logo").classList.add("hide");
         }
 
+        // Función para cerrar la barra lateral
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("logo").classList.remove("hide");
         }
 
-        // Función para explorar casas
-        function explorar() {
-            window.location.href = "Explora.html";
-        }
-        
-        function explorar_2() {
-            window.location.href = "Explora2.html";
-        }
-        
-        function explorar_3() {
-            window.location.href = "Explora3.html";
-        }
- 
-        function login() {
-            window.location.href = "login.html";
-        }
-
-
+        // Detectar el desplazamiento de la página y ocultar/mostrar el logo
+        window.onscroll = function() {
+            const logo = document.querySelector('.navbar .logo img');
+            if (window.scrollY > 100) {
+                logo.classList.add('hide');
+            } else {
+                logo.classList.remove('hide');
+            }
+        };
     </script>
-
 </body>
 </html>
+
